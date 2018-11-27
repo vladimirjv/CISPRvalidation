@@ -1,10 +1,15 @@
-
+/* jshint esversion: 6 */
 const routes = [
   {
     path: '/',
     component: () => import('layouts/MyLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/Index.vue') }
+      {
+        path: '', component: () => import('pages/Index.vue')
+      },
+      {
+        path: 'validacion', component: () => import('pages/Validacion.vue')
+      }
     ]
   }
 ]
