@@ -1,9 +1,11 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+/* jshint esversion: 6 */
+import Vue from 'vue';
+import Vuex from 'vuex';
 
-import example from './module-example'
+import example from './module-example';
+import rutas from './rutas';
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 /*
  * If not building with SSR mode, you can
@@ -13,9 +15,10 @@ Vue.use(Vuex)
 export default function (/* { ssrContext } */) {
   const Store = new Vuex.Store({
     modules: {
-      example
+      example,
+      rutas
     }
-  })
+  });
 
-  return Store
+  return Store;
 }

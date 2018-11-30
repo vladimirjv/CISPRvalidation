@@ -50,6 +50,10 @@ module.exports = function (ctx) {
         'QItem',
         'QItemMain',
         'QItemSide',
+        'QField',
+        'QInput',
+        'QPageSticky',
+        'QWindowResizeObservable',
       ],
       directives: [
         'Ripple'

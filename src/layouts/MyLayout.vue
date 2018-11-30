@@ -1,31 +1,18 @@
 <template>
   <q-layout view="lHh Lpr lFf">
 
-    <!-- <q-layout-header>
-      <q-toolbar
-        color="primary"
-        :glossy="$q.theme === 'mat'"
-        :inverted="$q.theme === 'ios'"
-      >
-        <q-btn
-          flat
-          dense
-          round
-          @click="leftDrawerOpen = !leftDrawerOpen"
-          aria-label="Menu"
-        >
-          <q-icon name="menu" />
-        </q-btn>
-
-        <q-toolbar-title>
-          Quasar App
-          <div slot="subtitle">Running on Quasar v{{ $q.version }}</div>
-        </q-toolbar-title>
-      </q-toolbar>
-    </q-layout-header> -->
+    <q-page-sticky position="top-left" :offset="[18, 18]">
+          <q-btn
+            fab-mini
+            color="green-9"
+            icon="keyboard_arrow_left"
+            class="animate-pop"
+          />
+    </q-page-sticky>
 
 
     <q-page-container>
+
       <router-view />
     </q-page-container>
 
@@ -41,6 +28,11 @@ export default {
     }
   },
   methods: {
+  },
+  computed:{
+    ruta: function () {
+      (this.$route!=='/')?true:false
+    }
   }
 }
 </script>
