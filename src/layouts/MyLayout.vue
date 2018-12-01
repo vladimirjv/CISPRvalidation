@@ -1,15 +1,21 @@
 <template>
   <q-layout view="lHh Lpr lFf">
 
-    <q-page-sticky position="top-left" :offset="[18, 18]">
+    <!-- <div v-if="rutaActual!=='/'"> -->
+      <q-page-sticky
+        v-if="button"
+        position="top-left"
+        :offset="[18, 18]"
+      >
           <q-btn
             fab-mini
+            @click="goBack"
             color="green-9"
             icon="keyboard_arrow_left"
             class="animate-pop"
           />
     </q-page-sticky>
-
+    <!-- </div> -->
 
     <q-page-container>
 
@@ -20,20 +26,31 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+import * as types from '../store/types.js';
 export default {
   name: 'MyLayout',
   data () {
     return {
-      // leftDrawerOpen: this.$q.platform.is.desktop
     }
   },
   methods: {
+    goBack: function () {
+      this.$router.push('/');
+    }
   },
   computed:{
-    ruta: function () {
-      (this.$route!=='/')?true:false
-    }
-  }
+    button(){
+      if (this.rutaActual==='/') {
+        return false
+      } else {
+        return true
+      }
+    },
+    ...mapGetters({
+      rutaActual: types.RUTA_ACTUAL
+    })
+  },
 }
 </script>
 

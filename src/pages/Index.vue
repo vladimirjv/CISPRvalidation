@@ -22,7 +22,7 @@
         </div>
       <!-- <div class="row"> -->
         <div class="col-10">
-          <q-btn class="full-width" label="Evaluar"></q-btn>
+          <q-btn class="full-width" label="click"></q-btn>
         </div>
       <!-- </div> -->
     </div>
@@ -35,7 +35,19 @@
 </style>
 
 <script>
+import { mapActions } from "vuex";
+import * as types from '../store/types.js';
 export default {
-  name: 'PageIndex'
+  name: 'PageIndex',
+  methods:{
+    ...mapActions({
+      updateRuta: types.UPDATE_RUTA
+    })
+  },
+  computed: {
+  },
+  mounted () {
+    this.updateRuta(this.$router.currentRoute.fullPath)
+  }
 }
 </script>

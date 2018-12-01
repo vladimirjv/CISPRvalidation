@@ -1,4 +1,9 @@
 /* jshint esversion: 6 */
-export function UPDATE_RUTA ({commit}, ruta) {
-  commit('MUTATE_RUTA',ruta);
+import * as types from './types';
+export const actions ={
+  [types.UPDATE_RUTA]: ({commit},payload) =>{
+    commit(types.MUTATE_RUTA,payload);
+    console.log(payload + 'ok');
+
+  }
 }

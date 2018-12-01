@@ -1,4 +1,7 @@
 /* jshint esversion:6 */
-export function RUTA_ACTUAL (state) {
-  return state.ruta;
-}
+import * as types from './types';
+export const getters = {
+  [types.RUTA_ACTUAL]: state => {
+    return state.ruta;
+  },
+};

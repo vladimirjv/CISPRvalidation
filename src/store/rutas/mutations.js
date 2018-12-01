@@ -1,4 +1,7 @@
 /* jshint esversion: 6 */
-export function MUTATE_RUTA (state, ruta) {
-  this.state.ruta = ruta;
-}
+import * as types from './types';
+export const mutations = {
+  [types.MUTATE_RUTA]: (state, payload) => {
+    state.ruta = payload;
+  }
+};

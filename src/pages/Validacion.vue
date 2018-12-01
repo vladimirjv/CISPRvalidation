@@ -41,6 +41,8 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+import * as types from '../store/types.js';
 export default {
   // name: 'PageName',
   data(){
@@ -50,9 +52,14 @@ export default {
       width: 0,
       height:0,
     }
+  },methods:{
+    ...mapActions({
+      updateRuta: types.UPDATE_RUTA
+    })
   },
-  methods:{
-  },
+  mounted () {
+    this.updateRuta(this.$router.currentRoute.fullPath);
+  }
 }
 </script>
 
