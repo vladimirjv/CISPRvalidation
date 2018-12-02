@@ -5,4 +5,4 @@ export const actions ={
     commit(types.MUTATE_RUTA,payload);
     // console.log(payload + 'ok');
   }
-}
+};
