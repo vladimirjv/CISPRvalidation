@@ -61,8 +61,6 @@ export default {
   },
   mounted () {
     this.updateRuta(this.$router.currentRoute.fullPath)
-    console.log('hi!');
-
   },
   beforeDestroy(){
 
