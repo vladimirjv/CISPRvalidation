@@ -12,5 +12,11 @@ export const mutations = {
   },
   [types.MUTATE_AVG]: (state,payload) => {
     state.avg = payload;
+  },
+  [types.MUTATE_EVAL_FRQ]: (state,payload) => {
+    state.eval_frq = payload;
+  },
+  [types.MUTATE_EVAL_PK]: (state, payload) => {
+    state.eval_pk = payload;
   }
-}
+};

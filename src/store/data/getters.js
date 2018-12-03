@@ -12,5 +12,11 @@ export const getters = {
   },
   [types.AVG]: (state) => {
     return state.avg;
+  },
+  [types.EVAL_FRQ]: state => {
+    return state.eval_frq;
+  },
+  [types.EVAL_PK]: state => {
+    return state.EVAL_PK;
   }
 };

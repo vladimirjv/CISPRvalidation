@@ -13,4 +13,10 @@ export const actions = {
   [types.UPDATE_AVG]: ({commit},payload) => {
     commit(types.MUTATE_AVG,payload);
   },
+  [types.UPDATE_EVAL_FRQ]: ({commit},payload) => {
+    commit(types.MUTATE_EVAL_FRQ,payload);
+  },
+  [types.UPDATE_EVAL_PK]: ({commit},payload) => {
+    commit(types.MUTATE_EVAL_PK,payload);
+  },
 };

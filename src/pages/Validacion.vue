@@ -56,11 +56,11 @@ export default {
   components: {
     Chart
   },
+    width: 0,
   data(){
     return {
       frecuencia:'',
       db:'',
-      width: 0,
       height:0,
       loading: false,
       errorFrq:false,
@@ -84,18 +84,20 @@ export default {
         ,2000)
     },
     validateFrq(){
-      this.errorPk=!this.validateArray(pk)
-      var frq=this.frecuencia.split(",").map(Number)
-      this.errorFrq=!this.validateArray(frq)
+      var frq=this.frecuencia.split(",").map(Number);
+      this.errorFrq=!this.validateArray(frq);
+      this.setEvalFrq(frq);
     },
     validatePk(){
-      var pk=this.db.split(",").map(Number)
+      var pk=this.db.split(",").map(Number);
+      this.errorPk=!this.validateArray(pk);
+      this.setEvalPk(pk);
     },
     validateArray(array){
       var validated=array.find((val,index)=>{
         return isNaN(val)
       })
-      console.log(typeof validated)
+      // console.log(typeof validated)
       switch (typeof(validated)) {
         case "undefined":
           return true
@@ -109,6 +111,8 @@ export default {
       updateRuta: types.UPDATE_RUTA,
       setFrecuencia: types.UPDATE_FRECUENCIA,
       setPk : types.UPDATE_PK,
+      setEvalFrq: types.UPDATE_EVAL_FRQ,
+      setEvalPk: types.UPDATE_EVAL_PK,
     })
   },
   computed: {

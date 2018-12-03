@@ -28,7 +28,7 @@ export default {
           data:this.getPk
         }
       ]
-    }, {responsive: false, maintainAspectRatio: false})
+    }, {responsive: true, maintainAspectRatio: false})
   }
 }
 </script>

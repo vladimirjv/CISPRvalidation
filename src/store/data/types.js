@@ -14,3 +14,19 @@ export const UPDATE_QP = 'update_QP';
 export const AVG = 'getter_AVG';
 export const MUTATE_AVG = 'mutate_AVG';
 export const UPDATE_AVG = 'update_AVG';
+
+export const EVAL_FRQ = 'EVAL_FRQ';
+export const MUTATE_EVAL_FRQ = 'MUTATE_EVAL_FRQ';
+export const UPDATE_EVAL_FRQ = 'UPDATE_EVAL_FRQ';
+
+export const EVAL_PK = 'EVAL_PK';
+export const MUTATE_EVAL_PK = 'MUTATE_EVAL_PK';
+export const UPDATE_EVAL_PK = 'UPDATE_EVAL_PK';
+
+export const EVAL_QP = 'EVAL_QP';
+export const MUTATE_EVAL_QP = 'MUTATE_EVAL_QP';
+export const UPDATE_EVAL_QP = 'UPDATE_EVAL_QP';
+
+export const EVAL_AVG = 'EVAL_AVG';
+export const MUTATE_EVAL_AVG = 'MUTATE_EVAL_AVG';
+export const UPDATE_EVAL_AVG = 'UPDATE_EVAL_AVG';
