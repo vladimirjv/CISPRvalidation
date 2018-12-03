@@ -77,10 +77,6 @@ export default {
       //map function hace mappign sobre el array y transforma en number
       //de no ser un numero, se agreg como NaN
       // var frq=this.frecuencia.split(",").map(Number)
-      // console.log(this.validateArray(frq))
-      this.dataFrq=this.getFrecuencia;
-      this.dataPk=this.getPk;
-
       setTimeout(()=>{
         this.loading=false
         this.chartBool=true
@@ -124,11 +120,10 @@ export default {
   mounted () {
     this.updateRuta(this.$router.currentRoute.fullPath);
     this.$axios.get('https://floating-sea-76017.herokuapp.com/datasf').
-    // this.$axios.get('http://127.0.0.1:5000//datasf').
     then((response) => {
-      this.setFrecuencia=response.data['frecuencia']
-      this.setPk=response.data['pk']
-      console.log(this.setPk)
+      this.setFrecuencia(response.data['frecuencia'])
+      this.setPk(response.data['pk'])
+      // console.log(this.getFrecuencia)
     }).catch((err) => {
       console.log(err)
     });

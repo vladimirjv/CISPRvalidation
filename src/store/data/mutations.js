@@ -1,7 +1,7 @@
 /* jshint esversion:6 */
 import * as types from './types';
 export const mutations = {
-  [types.MUTATE_FRECUENCIA]: (sate,payload) =>{
+  [types.MUTATE_FRECUENCIA]: (state,payload) =>{
     state.frecuencia = payload;
   },
   [types.MUTATE_PK]: (state,payload) => {
