@@ -40,7 +40,10 @@
         <!-- <q-btn :loading="loading1" color="secondary" @click="simulateProgress(1)" label="Button" /> -->
       </div>
 
-      <chart v-if="chartBool"></chart>
+      <div>
+        <my-table></my-table>
+      </div>
+      <!-- <chart v-if="chartBool"></chart> -->
     </div>
 
   </q-page>
@@ -48,13 +51,16 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
+import axios from 'axios';
 import * as types from '../store/types.js';
 import Chart from '../components/chart.vue';
+import MyTable from '../components/table.vue';
 
 export default {
   // name: 'PageName',
   components: {
-    Chart
+    Chart,
+    MyTable
   },
     width: 0,
   data(){
@@ -68,36 +74,74 @@ export default {
       chartBool: false,
       dataFrq:[30,45,80,110 ],
       dataPk:[13,14,16,12],
+      datosIncorrectosNotification:{
+        message:'Hey estás escribiendo algo mal',
+        timeout:2000,
+        type: 'warning',
+        position: 'top'
+      },
+      errorRequestNotification:{
+        message:'Algo malo sucedió',
+        timeout:2000,
+        type: 'negative',
+        position: 'top'
+      }
     }
   },
   methods:{
     progress(){
       this.loading=true;
-      //split combierte el array separadon los valores por la ,
-      //map function hace mappign sobre el array y transforma en number
-      //de no ser un numero, se agreg como NaN
-      // var frq=this.frecuencia.split(",").map(Number)
-      setTimeout(()=>{
+      if (this.errorFrq==false  &&this.errorPk===false&&this.getEvalFrq.length===this.getEvalPk.length) {
+        this.$axios.put('http://127.0.0.1:5000/compararpksemi', {lista:this.frecuencia,db:this.db})
+        .then(
+          (response)=>{
+              console.log(response.data)
+              this.loading=false
+              this.chartBool=true
+            }
+        )
+        .catch((err)=>{
+          console.log('Tus datos son incorrectos')
+          console.log(err)
+          this.showNotification(this.errorRequestNotification)
+          this.loading=false
+        });
+        console.log('ok lets go')
+      } else {
         this.loading=false
-        this.chartBool=true
+        this.showNotification(this.datosIncorrectosNotification)
       }
-        ,2000)
+    },
+    showNotification(notification){
+      this.$q.notify(notification)
     },
     validateFrq(){
       var frq=this.frecuencia.split(",").map(Number);
-      this.errorFrq=!this.validateArray(frq);
-      this.setEvalFrq(frq);
+      if(this.validateArray(frq)&&this.checkLimits(frq)===true){
+        this.errorFrq=false
+        this.setEvalFrq(frq);
+      }else{
+        this.errorFrq=true
+      }
+      (this.frecuencia==="")?this.errorFrq=false:"";
     },
     validatePk(){
       var pk=this.db.split(",").map(Number);
-      this.errorPk=!this.validateArray(pk);
       this.setEvalPk(pk);
+      this.errorPk=!this.validateArray(pk);
+      (this.frecuencia==="")?this.errorFrq=false:"";
+    },
+    checkLimits(array){
+      if (Math.max(...array)<=300&&Math.min(...array)>=30) {
+        return true
+      }else{
+        return false
+      }
     },
     validateArray(array){
       var validated=array.find((val,index)=>{
         return isNaN(val)
       })
-      // console.log(typeof validated)
       switch (typeof(validated)) {
         case "undefined":
           return true
@@ -119,15 +163,18 @@ export default {
     ...mapGetters({
       getFrecuencia: types.FRECUENCIA,
       getPk: types.PK,
+      getEvalFrq: types.EVAL_FRQ,
+      getEvalPk: types.EVAL_PK,
     })
   },
   mounted () {
     this.updateRuta(this.$router.currentRoute.fullPath);
-    this.$axios.get('https://floating-sea-76017.herokuapp.com/datasf').
+    // this.$axios.get('https://floating-sea-76017.herokuapp.com/datasf').
+    this.$axios.get('http://127.0.0.1:5000/datasf').
     then((response) => {
       this.setFrecuencia(response.data['frecuencia'])
       this.setPk(response.data['pk'])
-      // console.log(this.getFrecuencia)
+      console.log(this.getFrecuencia)
     }).catch((err) => {
       console.log(err)
     });

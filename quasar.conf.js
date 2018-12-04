@@ -54,6 +54,11 @@ module.exports = function (ctx) {
         'QInput',
         'QPageSticky',
         'QWindowResizeObservable',
+        'QTable',
+        'QTh',
+        // 'QTr',
+        // 'QTd',
+        // 'QTableColumns'
       ],
       directives: [
         'Ripple'

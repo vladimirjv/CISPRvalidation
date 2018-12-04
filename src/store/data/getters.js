@@ -17,6 +17,6 @@ export const getters = {
     return state.eval_frq;
   },
   [types.EVAL_PK]: state => {
-    return state.EVAL_PK;
+    return state.eval_pk;
   }
 };
