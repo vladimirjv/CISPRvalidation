@@ -18,5 +18,14 @@ export const getters = {
   },
   [types.EVAL_PK]: state => {
     return state.eval_pk;
+  },
+  [types.REAL_VALUE]: state => {
+    return state.real_value;
+  },
+  [types.DIFFERENCE]: state => {
+    return state.difference;
+  },
+  [types.MAPE]: state => {
+    return state.mape;
   }
 };

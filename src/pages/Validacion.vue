@@ -1,6 +1,6 @@
 <template>
   <q-page
-    class="flex absolute-center items-center"
+    class="flex flex-center items-center"
   >
     <!-- content -->
 
@@ -41,9 +41,9 @@
       </div>
 
       <div>
-        <my-table></my-table>
+        <my-table v-if="tableShow"></my-table>
       </div>
-      <!-- <chart v-if="chartBool"></chart> -->
+      <chart v-if="chartShow"></chart>
     </div>
 
   </q-page>
@@ -71,7 +71,8 @@ export default {
       loading: false,
       errorFrq:false,
       errorPk:false,
-      chartBool: false,
+      chartShow: false,
+      tableShow: false,
       dataFrq:[30,45,80,110 ],
       dataPk:[13,14,16,12],
       datosIncorrectosNotification:{
@@ -95,9 +96,13 @@ export default {
         this.$axios.put('http://127.0.0.1:5000/compararpksemi', {lista:this.frecuencia,db:this.db})
         .then(
           (response)=>{
-              console.log(response.data)
-              this.loading=false
-              this.chartBool=true
+              console.log(response.data);
+              this.setDiff(response.data['diff']);
+              this.setReal(response.data['realPk']);
+              this.setMape(response.data['mape']);
+              this.loading=false;
+              this.chartShow=true;
+              this.tableShow=true;
             }
         )
         .catch((err)=>{
@@ -157,6 +162,9 @@ export default {
       setPk : types.UPDATE_PK,
       setEvalFrq: types.UPDATE_EVAL_FRQ,
       setEvalPk: types.UPDATE_EVAL_PK,
+      setReal: types.UPDATE_REAL_VALUE,
+      setDiff: types.UPDATE_DIFFERENCE,
+      setMape:types.UPDATE_MAPE,
     })
   },
   computed: {
@@ -165,6 +173,8 @@ export default {
       getPk: types.PK,
       getEvalFrq: types.EVAL_FRQ,
       getEvalPk: types.EVAL_PK,
+      getReal: types.REAL_VALUE,
+      getDiff: types.DIFFERENCE,
     })
   },
   mounted () {

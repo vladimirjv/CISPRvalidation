@@ -19,4 +19,13 @@ export const actions = {
   [types.UPDATE_EVAL_PK]: ({commit},payload) => {
     commit(types.MUTATE_EVAL_PK,payload);
   },
+  [types.UPDATE_REAL_VALUE]: ({commit},payload) => {
+    commit(types.MUTATE_REAL_VALUE,payload);
+  },
+  [types.UPDATE_DIFFERENCE]: ({commit}, payload) => {
+    commit(types.MUTATE_DIFFERENCE,payload);
+  },
+  [types.UPDATE_MAPE]: ({commit}, payload) => {
+    commit(types.MUTATE_MAPE,payload);
+  }
 };

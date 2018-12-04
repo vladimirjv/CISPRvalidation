@@ -11,35 +11,49 @@
       </tr>
     </thead>
       <tbody>
-        <tr v-for="(val, index) in evalPk" :key="index">
-          <td>{{evalPk[index]}}</td>
-          <td>{{diff[index]}}</td>
-          <td>{{real[index]}}</td>
+        <tr v-for="(val, index) in getFrq" :key="index">
+          <td>{{getFrq[index]}}</td>
+          <td>{{getPk[index]}}</td>
+          <td>{{getDiff[index]}}</td>
+          <td>{{getRealVal[index]}}</td>
         </tr>
-        <!-- <tr> -->
-          <!-- <td>Alvin</td>
-          <td>Eclair</td>
-          <td>$0.87</td> -->
-        <!-- </tr> -->
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td style="color:red">{{getMape}}</td>
+        </tr>
     </tbody>
   </table>
 </template>
 
 <script>
+import {mapGetters} from 'vuex';
+import *as types from '../store/types.js';
+
 export default {
   // name: 'ComponentName',
   data () {
     return {
       heads:[
+        { name: 'Frq MHz'},
         { name:'Readed Data'},
         {name:'Difference'},
         {name:'Real Data'}
       ],
-      evalPk:[13,23,16,14],
-      diff:[-1.4,-3.1,2,-1.3],
-      real:[14.4,20,14,15.4]
     }
-  }
+  },
+  computed: {
+    // this.frq = this.getRealVal
+    // this.diff = this.getDiff,
+    ...mapGetters({
+      getFrq: types.EVAL_FRQ,
+      getPk: types.EVAL_PK,
+      getRealVal: types.REAL_VALUE,
+      getDiff: types.DIFFERENCE,
+      getMape: types.MAPE,
+    })
+  },
 }
 </script>
 

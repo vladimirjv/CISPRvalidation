@@ -30,3 +30,15 @@ export const UPDATE_EVAL_QP = 'UPDATE_EVAL_QP';
 export const EVAL_AVG = 'EVAL_AVG';
 export const MUTATE_EVAL_AVG = 'MUTATE_EVAL_AVG';
 export const UPDATE_EVAL_AVG = 'UPDATE_EVAL_AVG';
+
+export const REAL_VALUE= "REAL_VALUE";
+export const MUTATE_REAL_VALUE = 'MUTATE_REAL_VALUE';
+export const UPDATE_REAL_VALUE= 'UPDATE_REL_VALUE';
+
+export const DIFFERENCE='DIFFERECE';
+export const MUTATE_DIFFERENCE = 'MUTATE_DIFFERENCE';
+export const UPDATE_DIFFERENCE = 'UPDATE_DIFFERENCE';
+
+export const MAPE = 'MAP';
+export const MUTATE_MAPE = 'MUTATE_MAP';
+export const UPDATE_MAPE = 'UPDATE_MAP';

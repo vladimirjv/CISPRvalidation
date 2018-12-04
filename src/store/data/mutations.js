@@ -18,5 +18,14 @@ export const mutations = {
   },
   [types.MUTATE_EVAL_PK]: (state, payload) => {
     state.eval_pk = payload;
+  },
+  [types.MUTATE_REAL_VALUE]: (state, payload) => {
+    state.real_value = payload;
+  },
+  [types.MUTATE_DIFFERENCE]: (state,payload) => {
+    state.difference= payload;
+  },
+  [types.MUTATE_MAPE]: (state,payload) => {
+    state.mape=payload;
   }
 };

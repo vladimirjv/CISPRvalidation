@@ -8,4 +8,7 @@ export const state= {
   eval_pk:[],
   eval_qp:[],
   eval_avg:[],
+  real_value:[],
+  difference:[],
+  mape:0,
 };
