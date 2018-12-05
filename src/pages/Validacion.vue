@@ -33,12 +33,25 @@
         />
       </div>
 
+      <div>
+        <br>
+        <q-radio v-model="camara" val="semi" label="Semianecoica" color="green"/>
+        <q-radio v-model="camara" val="blind" label="Blindada" color="green"/>
+      </div>
+      <div>
+        <br>
+        <q-radio v-model="position" val="far" label="Far" color="green"/>
+        <q-radio v-model="position" val="middle" label="Middle" color="green"/>
+        <q-radio v-model="position" val="close" label="Close" color="green"/>
+      </div>
 
       <div>
-        <br><br>
-        <q-btn class="full-width" label="Evaluar" color="green" :loading="loading" @click="progress"></q-btn>
+        <br>
         <!-- <q-btn :loading="loading1" color="secondary" @click="simulateProgress(1)" label="Button" /> -->
+        <q-btn class="full-width" label="Evaluar" color="green" :loading="loading" @click="progress"></q-btn>
+        <br>
       </div>
+
 
       <div>
         <my-table v-if="tableShow"></my-table>
@@ -67,7 +80,8 @@ export default {
     return {
       frecuencia:'',
       db:'',
-      height:0,
+      camara:'',
+      position:'',
       loading: false,
       errorFrq:false,
       errorPk:false,

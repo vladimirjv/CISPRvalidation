@@ -1,3 +1,4 @@
+/*jshint esversion:6 */
 // Configuration for your app
 
 module.exports = function (ctx) {
@@ -41,24 +42,22 @@ module.exports = function (ctx) {
         'QLayoutDrawer',
         'QPageContainer',
         'QPage',
-        'QToolbar',
-        'QToolbarTitle',
         'QBtn',
         'QIcon',
         'QList',
         'QListHeader',
-        'QItem',
-        'QItemMain',
-        'QItemSide',
-        'QField',
         'QInput',
         'QPageSticky',
         'QWindowResizeObservable',
-        'QTable',
-        'QTh',
-        // 'QTr',
-        // 'QTd',
-        // 'QTableColumns'
+        'QRadio',
+        // 'QToolbar',
+        // 'QToolbarTitle',
+        // 'QItem',
+        // 'QItemMain',
+        // 'QItemSide',
+        // 'QField',
+        // 'QTable',
+        // 'QTh',
       ],
       directives: [
         'Ripple'
@@ -144,5 +143,5 @@ module.exports = function (ctx) {
         // appId: 'quasar-app'
       }
     }
-  }
-}
+  };
+};
