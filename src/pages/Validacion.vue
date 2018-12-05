@@ -131,6 +131,38 @@ export default {
         this.showNotification(this.datosIncorrectosNotification)
       }
     },
+    validateRB(){
+      switch (this.camara) {
+        case "semi":
+          switch (this.position) {
+            case "close":
+              return "SC"
+              break;
+            case "middle":
+              return "SM"
+              break;
+            case "far":
+              return "SF"
+              break;
+          }
+          break;
+        case "blind":
+          switch (this.position) {
+            case "close":
+              return "BC"
+              break;
+            case "middle":
+              return "BM"
+              break;
+            case "far":
+              return "BF"
+              break;
+          }
+        default:
+          return "SF"
+          break;
+      }
+    },
     showNotification(notification){
       this.$q.notify(notification)
     },
