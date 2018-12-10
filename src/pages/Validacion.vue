@@ -16,7 +16,7 @@
           v-model="frecuencia"
           float-label="Frecuencia en MHz"
           placeholder="30, 53, 98, 123, 230, 290"
-          color="green"
+          color="primary"
           @input="validateFrq"
           :error="errorFrq"
         />
@@ -27,7 +27,7 @@
           v-model="db"
           float-label="Valores en dBuV"
           placeholder="23,14,18,9,21"
-          color="green"
+          color="primary"
           @input="validatePk"
           :error="errorPk"
         />
@@ -35,20 +35,20 @@
 
       <div>
         <br>
-        <q-radio v-model="camara" val="semi" label="Semianecoica" color="green"/>
+        <q-radio v-model="camara" val="semi" label="Semianecoica" color="green" style="margin-right: 15px"/>
         <q-radio v-model="camara" val="blind" label="Blindada" color="green"/>
       </div>
       <div>
         <br>
-        <q-radio v-model="position" val="far" label="Far" color="green"/>
-        <q-radio v-model="position" val="middle" label="Middle" color="green"/>
+        <q-radio v-model="position" val="far" label="Far" color="green" style="margin-right: 15px"/>
+        <q-radio v-model="position" val="middle" label="Middle" color="green" style="margin-right: 15px"/>
         <q-radio v-model="position" val="close" label="Close" color="green"/>
       </div>
 
       <div>
         <br>
         <!-- <q-btn :loading="loading1" color="secondary" @click="simulateProgress(1)" label="Button" /> -->
-        <q-btn class="full-width" label="Evaluar" color="green" :loading="loading" @click="progress"></q-btn>
+        <q-btn class="full-width" label="Evaluar" color="primary" :loading="loading" @click="progress"></q-btn>
         <br>
       </div>
 

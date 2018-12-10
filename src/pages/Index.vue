@@ -9,7 +9,8 @@
     <div class="absolute-center gutter-xs">
       <!-- <div class="row"> -->
         <div class="flex col-12 flex-center">
-          <img  alt="Quasar logo" src="~assets/quasar-logo-full.svg">
+          <!-- <img  alt="Quasar logo" src="~assets/quasar-logo-full.svg"> -->
+          <!-- <img  alt="Quasar logo" src="~assets/mabe.svg"> -->
         </div>
         <br>
       <!-- </div> -->
@@ -24,7 +25,7 @@
             class="full-width"
             label="Evaluar"
             to="/validacion"
-            color="green"
+            color="primary"
           >
           </q-btn>
         </div>
@@ -33,7 +34,7 @@
           <q-btn
             class="full-width"
             label="click"
-            color="green"
+            color="primary"
           >
           </q-btn>
         </div>

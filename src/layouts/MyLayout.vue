@@ -10,7 +10,7 @@
           <q-btn
             fab-mini
             @click="goBack"
-            color="green-9"
+            color="primary"
             icon="keyboard_arrow_left"
             class="animate-pop"
           />
