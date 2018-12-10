@@ -105,6 +105,7 @@ export default {
   },
   methods:{
     progress(){
+      this.getData()
       this.loading=true;
       if (this.errorFrq==false  &&this.errorPk===false&&this.getEvalFrq.length===this.getEvalPk.length) {
         this.$axios.put('http://127.0.0.1:5000/compararpksemi', {lista:this.frecuencia,db:this.db})
@@ -202,6 +203,16 @@ export default {
           break;
       }
     },
+    getData(){
+      this.$axios.get('http://127.0.0.1:5000/datasf')
+        .then((response) => {
+          this.setFrecuencia(response.data['frecuencia'])
+          this.setPk(response.data['pk'])
+          console.log(this.getFrecuencia)
+        }).catch((err) => {
+          console.log(err)
+        });
+    },
     ...mapActions({
       updateRuta: types.UPDATE_RUTA,
       setFrecuencia: types.UPDATE_FRECUENCIA,
@@ -225,15 +236,7 @@ export default {
   },
   mounted () {
     this.updateRuta(this.$router.currentRoute.fullPath);
-    // this.$axios.get('https://floating-sea-76017.herokuapp.com/datasf').
-    this.$axios.get('http://127.0.0.1:5000/datasf').
-    then((response) => {
-      this.setFrecuencia(response.data['frecuencia'])
-      this.setPk(response.data['pk'])
-      console.log(this.getFrecuencia)
-    }).catch((err) => {
-      console.log(err)
-    });
+    // this.$axios.get('https://floating-sea-76017.herokuapp.com/datasf')
   }
 }
 </script>

@@ -63,9 +63,6 @@ export default {
   mounted () {
     this.updateRuta(this.$router.currentRoute.fullPath)
   },
-  beforeDestroy(){
-
-  }
 
 }
 </script>
