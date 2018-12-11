@@ -1,16 +1,9 @@
 <template>
-  <q-page
-    class="flex flex-center items-center"
-  >
-    <!-- content -->
-
-
+  <q-page class="flex flex-center items-center">
     <div class="flex column">
       <div>
-        <!-- <p>Inserte los datos</p> -->
         <h2>Inserte sus datos</h2> <br>
       </div>
-
       <div>
         <q-input
           v-model="frecuencia"
@@ -21,7 +14,6 @@
           :error="errorFrq"
         />
       </div>
-
       <div>
         <q-input
           v-model="db"
@@ -32,39 +24,54 @@
           :error="errorPk"
         />
       </div>
-
       <div>
         <br>
-        <q-radio v-model="camara" val="semi" label="Semianecoica" color="green" style="margin-right: 15px"/>
-        <q-radio v-model="camara" val="blind" label="Blindada" color="green"/>
+        <q-radio
+          v-model="camara"
+          val="S"
+          label="Semianecoica"
+          color="secondary"
+          style="margin-right: 15px"
+        />
+        <q-radio
+          v-model="camara"
+          val="B"
+          label="Blindada"
+          color="secondary"
+        />
       </div>
       <div>
         <br>
-        <q-radio v-model="position" val="far" label="Far" color="green" style="margin-right: 15px"/>
-        <q-radio v-model="position" val="middle" label="Middle" color="green" style="margin-right: 15px"/>
-        <q-radio v-model="position" val="close" label="Close" color="green"/>
+        <q-radio
+          v-model="position"
+          val="F"
+          label="Far"
+          color="secondary"
+          style="margin-right: 15px"
+        />
+        <q-radio
+          v-model="position"
+          val="M"
+          label="Middle"
+          color="secondary"
+          style="margin-right: 15px"
+        />
+        <q-radio
+          v-model="position"
+          val="C"
+          label="Close"
+          color="secondary"
+        />
       </div>
-
       <div>
         <br>
-        <!-- <q-btn :loading="loading1" color="secondary" @click="simulateProgress(1)" label="Button" /> -->
         <q-btn class="full-width" label="Evaluar" color="primary" :loading="loading" @click="progress"></q-btn>
         <br>
       </div>
 
-
       <div>
         <my-table v-if="tableShow"></my-table>
       </div>
-
-      <!-- <q-btn
-        v-if="chartShow"
-        class="full-width"
-        label="Abrir Gráfica"
-        color="secondary"
-        @click.native="openChart"
-        >
-        </q-btn> -->
       <q-btn
         v-if="chartShow"
         class="full-width"
@@ -74,17 +81,7 @@
         >
         </q-btn>
       <!-- <chart v-if="chartShow"></chart> -->
-
-      <!-- <q-modal v-model="chartModal" :content-css="{minWidth: '50vw'}"> -->
-      <!-- <q-modal v-model="chartModal" maximized>
-        <div style="padding: 50px">
-          <chart v-if="chartModal"></chart>
-          <q-btn color="primary" @click="closeChart" label="Close" />
-        </div>
-      </q-modal> -->
-
     </div>
-
   </q-page>
 </template>
 
@@ -105,15 +102,13 @@ export default {
       chartModal:false,
       frecuencia:'',
       db:'',
-      camara:'Semianecoica',
-      position:'Far',
+      camara:'',
+      position:'',
+      chartShow: false,
       loading: false,
       errorFrq:false,
       errorPk:false,
-      chartShow: false,
       tableShow: false,
-      dataFrq:[30,45,80,110 ],
-      dataPk:[13,14,16,12],
       datosIncorrectosNotification:{
         message:'Hey estás escribiendo algo mal',
         timeout:2000,
@@ -130,10 +125,12 @@ export default {
   },
   methods:{
     progress(){
-      this.getData()
       this.loading=true;
-      if (this.errorFrq==false  &&this.errorPk===false&&this.getEvalFrq.length===this.getEvalPk.length) {
-        this.$axios.put('http://127.0.0.1:5000/compararpksemi', {lista:this.frecuencia,db:this.db,type:"SM"})
+      var typeEval=this.camara+this.position
+      // console.log(typeEval)
+      if (this.errorFrq==false  &&this.errorPk===false&&this.getEvalFrq.length===this.getEvalPk.length&&this.camara!==''&&this.position!=='') {
+        this.getData()
+        this.$axios.put('http://127.0.0.1:5000/compararpksemi', {lista:this.frecuencia,db:this.db,type:typeEval})
         .then(
           (response)=>{
               console.log(response.data);
@@ -146,53 +143,18 @@ export default {
             }
         )
         .catch((err)=>{
-          console.log('Tus datos son incorrectos')
-          console.log(err)
-          this.showNotification(this.errorRequestNotification)
-          this.loading=false
+          console.log('Tus datos son incorrectos');
+          // console.log(err);
+          // console.log(err.response);
+          // console.log(err.request);
+          console.log(err.message);
+          this.showNotification(this.errorRequestNotification);
+          this.loading=false;
         });
-        console.log('ok lets go')
+        // console.log('ok lets go')
       } else {
-        this.loading=false
         this.showNotification(this.datosIncorrectosNotification)
-      }
-    },
-    openChart(){
-      this.chartModal = true;
-    },
-    closeChart(){
-      this.chartModal = false;
-    },
-    validateRB(){
-      switch (this.camara) {
-        case "semi":
-          switch (this.position) {
-            case "close":
-              return "SC"
-              break;
-            case "middle":
-              return "SM"
-              break;
-            case "far":
-              return "SF"
-              break;
-          }
-          break;
-        case "blind":
-          switch (this.position) {
-            case "close":
-              return "BC"
-              break;
-            case "middle":
-              return "BM"
-              break;
-            case "far":
-              return "BF"
-              break;
-          }
-        default:
-          return "SF"
-          break;
+        this.loading=false;
       }
     },
     showNotification(notification){
