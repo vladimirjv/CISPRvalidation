@@ -56,7 +56,33 @@
       <div>
         <my-table v-if="tableShow"></my-table>
       </div>
-      <chart v-if="chartShow"></chart>
+
+      <!-- <q-btn
+        v-if="chartShow"
+        class="full-width"
+        label="Abrir Gráfica"
+        color="secondary"
+        @click.native="openChart"
+        >
+        </q-btn> -->
+      <q-btn
+        v-if="chartShow"
+        class="full-width"
+        label="Abrir Gráfica"
+        color="secondary"
+        to="/chart"
+        >
+        </q-btn>
+      <!-- <chart v-if="chartShow"></chart> -->
+
+      <!-- <q-modal v-model="chartModal" :content-css="{minWidth: '50vw'}"> -->
+      <!-- <q-modal v-model="chartModal" maximized>
+        <div style="padding: 50px">
+          <chart v-if="chartModal"></chart>
+          <q-btn color="primary" @click="closeChart" label="Close" />
+        </div>
+      </q-modal> -->
+
     </div>
 
   </q-page>
@@ -66,22 +92,21 @@
 import { mapActions, mapGetters } from "vuex";
 import axios from 'axios';
 import * as types from '../store/types.js';
-import Chart from '../components/chart.vue';
 import MyTable from '../components/table.vue';
 
 export default {
   // name: 'PageName',
   components: {
-    Chart,
     MyTable
   },
     width: 0,
   data(){
     return {
+      chartModal:false,
       frecuencia:'',
       db:'',
-      camara:'',
-      position:'',
+      camara:'Semianecoica',
+      position:'Far',
       loading: false,
       errorFrq:false,
       errorPk:false,
@@ -108,7 +133,7 @@ export default {
       this.getData()
       this.loading=true;
       if (this.errorFrq==false  &&this.errorPk===false&&this.getEvalFrq.length===this.getEvalPk.length) {
-        this.$axios.put('http://127.0.0.1:5000/compararpksemi', {lista:this.frecuencia,db:this.db})
+        this.$axios.put('http://127.0.0.1:5000/compararpksemi', {lista:this.frecuencia,db:this.db,type:"SM"})
         .then(
           (response)=>{
               console.log(response.data);
@@ -131,6 +156,12 @@ export default {
         this.loading=false
         this.showNotification(this.datosIncorrectosNotification)
       }
+    },
+    openChart(){
+      this.chartModal = true;
+    },
+    closeChart(){
+      this.chartModal = false;
     },
     validateRB(){
       switch (this.camara) {

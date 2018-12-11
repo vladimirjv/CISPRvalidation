@@ -9,6 +9,9 @@ const routes = [
       },
       {
         path: 'validacion', component: () => import('pages/Validacion.vue')
+      },
+      {
+        path: 'chart', component: () => import('pages/chart.vue')
       }
     ]
   }

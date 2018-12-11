@@ -50,6 +50,7 @@ module.exports = function (ctx) {
         'QPageSticky',
         'QWindowResizeObservable',
         'QRadio',
+        'QModal',
         // 'QToolbar',
         // 'QToolbarTitle',
         // 'QItem',

@@ -10,7 +10,7 @@
       <!-- <div class="row"> -->
         <div class="flex col-12 flex-center">
           <!-- <img  alt="Quasar logo" src="~assets/quasar-logo-full.svg"> -->
-          <!-- <img  alt="Quasar logo" src="~assets/mabe.svg"> -->
+          <img  alt="Quasar logo" src="~assets/mabe.svg">
         </div>
         <br>
       <!-- </div> -->
@@ -44,9 +44,6 @@
     </transition>
   </q-page>
 </template>
-
-<style>
-</style>
 
 <script>
 import { mapActions } from "vuex";
