@@ -52,7 +52,11 @@ export default {
   computed: {
   },
   mounted () {
-    this.updateRuta(this.$router.currentRoute.fullPath)
+    this.updateRuta(this.$router.currentRoute.fullPath);
+    this.$axios.get('https://cispr.herokuapp.com/hello')
+      .then((response)=>{
+        console.log(response.data)
+      })
   },
 
 }

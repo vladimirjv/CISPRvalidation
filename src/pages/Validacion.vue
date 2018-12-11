@@ -130,7 +130,7 @@ export default {
       // console.log(typeEval)
       if (this.errorFrq==false  &&this.errorPk===false&&this.getEvalFrq.length===this.getEvalPk.length&&this.camara!==''&&this.position!=='') {
         this.getData()
-        this.$axios.put('http://127.0.0.1:5000/compararpksemi', {lista:this.frecuencia,db:this.db,type:typeEval})
+        this.$axios.put('https://cispr.herokuapp.com/compararpksemi', {lista:this.frecuencia,db:this.db,type:typeEval})
         .then(
           (response)=>{
               console.log(response.data);
@@ -197,7 +197,7 @@ export default {
       }
     },
     getData(){
-      this.$axios.get('http://127.0.0.1:5000/datasf')
+      this.$axios.get('https://cispr.herokuapp.com/datasf')
         .then((response) => {
           this.setFrecuencia(response.data['frecuencia'])
           this.setPk(response.data['pk'])
