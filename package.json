@@ -7,7 +7,6 @@
   "author": "vladimirjv <ivladimirjuarez@outlook.com>",
   "private": true,
   "scripts": {
-    // "test": "echo \"No test specified\" && exit 0",
     "build": "quasar build",
     "start": "node server.js",
     "heroku-postbuild": "npm install --only=dev --no-shrinkwrap && npm run build"
