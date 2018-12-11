@@ -2,18 +2,18 @@
   <q-layout view="lHh Lpr lFf">
 
     <!-- <div v-if="rutaActual!=='/'"> -->
-    <q-page-sticky
+    <!-- <q-page-sticky
       v-if="button"
       position="top-left"
       :offset="[18, 18]"
-    >
+    > -->
         <!-- class="animate-pop" -->
-      <q-btn
+      <!-- <q-btn
         fab-mini
         color="primary"
         icon="keyboard_arrow_left"
       ></q-btn>
-    </q-page-sticky>
+    </q-page-sticky> -->
     <!-- </div> -->
 
     <q-page-container>

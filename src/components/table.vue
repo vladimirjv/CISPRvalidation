@@ -18,7 +18,7 @@
           <td>{{getRealVal[index]}}</td>
         </tr>
         <tr>
-          <td></td>
+          <td style="color: red"> MAPE:</td>
           <td></td>
           <td></td>
           <td style="color:red">{{getMape}}</td>

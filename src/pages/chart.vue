@@ -1,6 +1,7 @@
 <template>
-  <q-page class="flex flex-center items-center">
-    <div class="flex column">
+  <q-page class="flex flex-center">
+    <div :style="css">
+      <q-window-resize-observable @resize="onResize" />
       <chart></chart>
     </div>
   </q-page>
@@ -13,7 +14,19 @@ export default {
   components: {
     Chart,
   },
-
+  data(){
+    return {
+      width:'width:800px',
+      css:'max-width: 600px;',
+    }
+  },
+  methods: {
+    onResize(size){
+      console.log(size.width)
+      this.css ='width:'+size.width+'px;'
+      console.log('width: '+size.width +' px')
+    }
+  }
 }
 </script>
 
